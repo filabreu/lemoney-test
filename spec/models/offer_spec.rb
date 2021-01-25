@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Offer, type: :model do
-  describe 'validations' do
-    let(:valid_properties) do
-      {
-        advertiser_name: 'Advertiser 1',
-        url: 'http://example.com',
-        description: 'Description text',
-        starts_at: DateTime.now
-      }
-    end
+  let(:valid_properties) do
+    {
+      advertiser_name: 'Advertiser 1',
+      url: 'http://example.com',
+      description: 'Description text',
+      starts_at: DateTime.now
+    }
+  end
 
+  describe 'validations' do
     let(:invalid_properties) do
       {
         advertiser_name: nil,
@@ -115,6 +115,36 @@ RSpec.describe Offer, type: :model do
 
           it { is_expected.to include(:description) }
         end
+      end
+    end
+  end
+
+  describe '#state' do
+    let(:offer) { Offer.create(valid_properties) }
+
+    context 'initial value' do
+      subject { offer.state }
+
+      it { is_expected.to eq('disabled') }
+    end
+
+    describe '#enable' do
+      it do
+        expect { offer.enable }.to change { offer.state }
+          .from('disabled')
+          .to('enabled')
+      end
+    end
+
+    describe '#disable' do
+      before do
+        offer.enable
+      end
+
+      it do
+        expect { offer.disable }.to change { offer.state }
+          .from('enabled')
+          .to('disabled')
       end
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_24_195411) do
+ActiveRecord::Schema.define(version: 2021_01_25_130510) do
 
   create_table "offers", force: :cascade do |t|
     t.string "advertiser_name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_01_24_195411) do
     t.boolean "premium"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "state", default: 0
   end
 
 end

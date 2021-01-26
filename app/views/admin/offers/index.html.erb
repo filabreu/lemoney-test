@@ -1,1 +1,30 @@
-<h1>List of Offers</h1>
+<h1>Offers</h1>
+
+<%= link_to 'New Offer', new_admin_offer_path, class: 'btn btn-primary' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">URL</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @offers.each do |offer| %>
+      <tr>
+        <th scope="row"><%= offer.id %></th>
+        <td><%= offer.advertiser_name %></td>
+        <td><%= offer.url %></td>
+        <td><%= offer.state %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_offer_path(offer), class: 'btn btn-primary' %>
+          <%= link_to 'Enable', admin_offer_path(offer, offer: { state: :enabled }), method: :put, class: 'btn btn-success' if offer.disabled? %>
+          <%= link_to 'Disable', admin_offer_path(offer, offer: { state: :disabled }), method: :put, class: 'btn btn-danger' if offer.enabled? %>
+          <%= link_to 'Destroy', admin_offer_path(offer, method: :delete), class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

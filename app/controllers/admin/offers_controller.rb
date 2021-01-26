@@ -39,7 +39,7 @@ class Admin::OffersController < ApplicationController
   protected
 
   def offer_params
-    params.require(:offer).permit(:advertiser_name, :description, :url, :starts_at, :ends_at)
+    params.require(:offer).permit(:advertiser_name, :description, :url, :starts_at, :ends_at, :premium, :state)
   end
 
   def set_offer

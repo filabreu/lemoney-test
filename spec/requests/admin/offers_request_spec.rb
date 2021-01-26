@@ -7,7 +7,8 @@ RSpec.describe "Admin::Offers", type: :request do
       url: 'http://example.com',
       description: 'Description text',
       starts_at: DateTime.now,
-      ends_at: DateTime.now.next_week
+      ends_at: DateTime.now.next_week,
+      premium: false
     }
   end
 

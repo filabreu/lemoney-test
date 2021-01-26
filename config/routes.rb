@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   end
 
   resources :offers, only: [:index]
+
+  root to: 'home#index'
 end

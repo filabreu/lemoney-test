@@ -1,0 +1,19 @@
+<div class="row gx-5">
+  <% @offers.each do |offer| %>
+    <div class="col-sm-6 col-12">
+      <div class="card">
+        <div class="card-body text-center position-relative">
+          <% if offer.premium? %>
+            <span class="badge bg-danger text-uppercase position-absolute top-0 start-100 translate-middle">
+              premium
+            </span>
+          <% end %>
+          <h3 class="mb-3">
+            <%= offer.advertiser_name %>
+          </h3>
+          <%= link_to 'Shop now', offer.url, class: "btn btn-secondary #{'btn-success btn-lg' if offer.premium?}" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

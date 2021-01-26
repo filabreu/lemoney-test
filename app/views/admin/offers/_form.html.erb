@@ -1,3 +1,11 @@
+<% content_for :error_messages do %>
+  <ul>
+    <% @offer.errors.full_messages.each do |error_message| %>
+      <li><%= error_message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: [:admin, @offer], class: 'mt-4' do |f| %>
   <div class="mb-3">
     <%= f.label :advertiser_name, 'Advertiser name', class: 'form-label' %>

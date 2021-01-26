@@ -18,7 +18,8 @@ class Admin::OffersController < ApplicationController
     if @offer.save
       redirect_to admin_offers_path, notice: 'Offer successfully created'
     else
-      render :new, alert: 'Failed to created Offer', status: :unprocessable_entity
+      flash[:alert] = 'Failed to created Offer'
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +27,8 @@ class Admin::OffersController < ApplicationController
     if @offer.update(offer_params)
       redirect_to admin_offers_path, notice: 'Offer successfully updated'
     else
-      render :edit, alert: 'Failed to update Offer', status: :unprocessable_entity
+      flash[:alert] = 'Failed to update Offer'
+      render :edit, status: :unprocessable_entity
     end
   end
 
